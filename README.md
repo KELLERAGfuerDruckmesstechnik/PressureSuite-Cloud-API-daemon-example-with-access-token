@@ -45,3 +45,6 @@ If you plan run this as a server script to store measurement data from the KOLIB
 
 Please create github issues for feature wishes or problems 
 Or contact kolibri@keller-druck.com
+
+#### Further documentation
+Please visit https://docs.kolibricloud.ch/cloud-interfaces/api/channels/
