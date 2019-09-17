@@ -12,11 +12,11 @@ Endpoints interest are:
 | ```GET /v1/Measurements``` | Gets a list of measurements composed of a value and a UTC datetime | 
 
 ##### Needs:
-+ **Python 2.7**  (Untested with Python 3.x)
-+ **urllib2**
++ **Python 3.7**
++ **[requests](https://2.python-requests.org/en/master/user/install/#install)**
 
  It is necessary to have a valid *ACCESS_TOKEN*
- Please ask KELLER AG (kolibri@keller-druck.com) to provide a valid *ACCESS_TOKEN* key
+ Please ask KELLER AG (kolibri@keller-druck.com) or your KELLER sales contact to provide a valid *ACCESS_TOKEN* key
 
 ##### Notes:
 DateTime format from the API are always in **UTC**  
@@ -48,3 +48,13 @@ Or contact kolibri@keller-druck.com
 
 #### Further documentation
 Please visit https://docs.kolibricloud.ch/cloud-interfaces/api/channels/
+
+#### FAQ: How do I get calculated data from the API?
+Currently, we do not offer calculated data such as “water levels”, “tank levels” etc through the API.
+
+Besides technical and security reasons:
+- We believe it will cause more trouble for customers to have this option activated. You can continuously fetch measurements from the Cloud API and automatically store it in the customers DB/system.
+Now, when anyone (you, another authorized user, your customer) who has write-access changes the calculation settings on the Cloud web page the calculated values will change, too. This might happen by accident and the API starts to deliver false calculation values.
+- We from KELLER try to deliver you the rawest measurement data we get from our sensors and believe that when you integrate them into a customer’s system then you have to manage and guarantee the calculation, too.
+
+The water calculation itself is not that complicated. You can see the formula in the Cloud web app.
