@@ -1,8 +1,7 @@
-## KOLIBRI Cloud API daemon example with permanent access token
+## KOLIBRI Cloud API daemon example with access token
 ##### Purpose:
 This example code shows basic access to the KOLIBRI Cloud API using a access token from KELLER to gather measurement data from the KOLIBRI Cloud. 
 The API's specification can be found here: https://api.kolibricloud.ch/swagger/index.html?url=/swagger/v1/swagger.json
-There is a Python example and a C# example.
 
 Endpoints interest are:
 
@@ -13,15 +12,11 @@ Endpoints interest are:
 | ```GET /v1/Measurements``` | Gets a list of measurements composed of a value and a UTC datetime | 
 
 ##### Needs:
-+ For the Python example:
-   + **Python 3.7**
-   + **[requests](https://2.python-requests.org/en/master/user/install/#install)**
++ **Python 3.7**
++ **[requests](https://2.python-requests.org/en/master/user/install/#install)**
 
-+ For the C# example:
-   + .NET Core 3.1 runtime (https://dotnet.microsoft.com/download/dotnet-core/3.1)
-
- It is necessary to have a valid permanent *ACCESS_TOKEN*
- Please ask KELLER AG (kolibri@keller-druck.com) or your KELLER sales contact to provide a valid permanent *ACCESS_TOKEN* key
+ It is necessary to have a valid *ACCESS_TOKEN*
+ Please ask KELLER AG (kolibri@keller-druck.com) or your KELLER sales contact to provide a valid *ACCESS_TOKEN* key
 
 ##### Notes:
 DateTime format from the API are always in **UTC**  
@@ -32,7 +27,7 @@ It is not possible to delete measurement data with the API
 If you want to try out the API with [Swagger](https://api.kolibricloud.ch/swagger/index.html?url=/swagger/v1/swagger.json) please us the dark green [Authorize] button and a valid bearer token. You can get a valid bearer token when logged in on www.kolibricloud.ch under [User Settings]
 The ```deviceId``` are the same numbers that can be seen in the URL of the WebApp when the device is selected: [https://www.kolibricloud.ch/devices/**1234**/](https://www.kolibricloud.ch/devices/1234/)
 
-If you want a permanent *ACCESS_TOKEN*, please contact the KOLIBRI support team (kolibri@keller-druck.com).
+If you want a permament *ACCESS_TOKEN*, please contact the KOLIBRI support team (kolibri@keller-druck.com).
 The provided access token must be the value with the key "userOid" in the header of every request.
 <img src="https://i.imgur.com/BtOYz6h.png" width="400">
 
@@ -45,7 +40,7 @@ If you plan run this as a server script to store measurement data from the KOLIB
   - for all channels of interest..
   - use ```get_data_measurements_from_timespan()``` with he timespan of ~24
   - and store the data into a DB
-  - you might check first if the measurement(value+timestamp) is not already stored
+  - you might check first if the measuremenent(value+timestamp) is not already stored
 + It is possible that a request fails. To solve this error case please re-call the data later again. You might gather data from an overlapped time slot and exclude measurements that has been stored already.
 
 Please create github issues for feature wishes or problems 
