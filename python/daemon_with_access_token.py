@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 # ##############################################################################
-# KOLIBRI CLOUD API DAEMON EXAMPLE WITH ACCESS TOKEN                         #
+# PressureSuite CLOUD API DAEMON EXAMPLE WITH ACCESS TOKEN                         #
 #                                                                            #
 # Needs:                                                                     #
 # - Python 3.7                                                               #
@@ -29,9 +29,9 @@ def get_data(_endpoint, _access_token):
     '''
     With the correct Access Token one can get data from the API.
     The API specification can be seen here: 
-    https://api.kolibricloud.ch/swagger/index.html?url=/swagger/v1/swagger.json
+    https://api.pressuresuite.com/swagger/index.html?url=/swagger/v1/swagger.json
     '''
-    base_url = 'https://api.kolibricloud.ch'
+    base_url = 'https://api.pressuresuite.com'
     url = base_url + _endpoint
     headers = {'userOid' : _access_token}
     

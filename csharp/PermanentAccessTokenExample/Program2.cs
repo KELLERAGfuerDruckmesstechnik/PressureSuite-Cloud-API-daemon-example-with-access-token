@@ -9,9 +9,9 @@ namespace PermanentAccessTokenExample
     class Program2
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string BaseUrl = "https://api.kolibricloud.ch";
+        private const string BaseUrl = "https://api.pressuresuite.com";
 
-        private const string PermanentAccessToken = "bqCrDAQABACUKUpXST6JCEgPeStCyeHhfmNz/+yE29F+VbVeKl7eU....  ASK kolibri@keller-druck.com for your permanent acces token";
+        private const string PermanentAccessToken = "bqCrDAQABACUKUpXST6JCEgPeStCyeHhfmNz/+yE29F+VbVeKl7eU....  ASK pressuresuite@keller-druck.com for your permanent access token";
 
         static async Task Main2(string[] args)
         {
@@ -20,7 +20,7 @@ namespace PermanentAccessTokenExample
             // Add the permanent access token to the header with the userOid key
             HttpClient.DefaultRequestHeaders.Add("userOid", PermanentAccessToken);
             
-            HttpResponseMessage response = await HttpClient.GetAsync($"https://api.kolibricloud.ch/v1/Devices/{deviceId}");
+            HttpResponseMessage response = await HttpClient.GetAsync($"https://api.pressuresuite.com/v1/Devices/{deviceId}");
             var responseText = await response.Content.ReadAsStringAsync();
             Console.WriteLine(responseText + Environment.NewLine);
 
@@ -30,7 +30,7 @@ namespace PermanentAccessTokenExample
             DateTime now = DateTime.UtcNow;
             
             // Get all data from the last 12h as CSV text
-            // eg.  https://api.kolibricloud.ch/v1/Export?deviceIds=2913&from=2023-06-26T15%3A40%3A02.000Z&to=2023-06-27T15%3A40%3A02.000Z&measurementDefinitionIds=2&measurementDefinitionIds=5&measurementDefinitionIds=7&measurementDefinitionIds=8&measurementDefinitionIds=11&measurementDefinitionIds=36&exportFileType=0
+            // eg.  https://api.pressuresuite.com/v1/Export?deviceIds=2913&from=2023-06-26T15%3A40%3A02.000Z&to=2023-06-27T15%3A40%3A02.000Z&measurementDefinitionIds=2&measurementDefinitionIds=5&measurementDefinitionIds=7&measurementDefinitionIds=8&measurementDefinitionIds=11&measurementDefinitionIds=36&exportFileType=0
             string requestUrl =  BaseUrl + $"/v1/Export?deviceIds={deviceId}&from={(now - TimeSpan.FromHours(12)):yyyy-MM-ddTHH:mm:sssZ}&to={now:yyyy-MM-ddTHH:mm:sssZ}";
             foreach (var measurementDefinition in deviceDetails.MeasurementDefinitions)
             {

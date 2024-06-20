@@ -10,9 +10,9 @@ namespace PermanentAccessTokenExample
     class Program
     {
         private static readonly HttpClient HttpClient = new HttpClient();
-        private const string BaseUrl = "https://api.kolibricloud.ch";
+        private const string BaseUrl = "https://api.pressuresuite.com";
 
-        private const string PermanentAccessToken = "bqCrDAQABACUKUpXST6JCEgPeStCyeHhfmNz/+yE29F+VbVeKl7eU....  ASK kolibri@keller-druck.com for your permanent acces token";
+        private const string PermanentAccessToken = "bqCrDAQABACUKUpXST6JCEgPeStCyeHhfmNz/+yE29F+VbVeKl7eU....  ASK pressuresuite@keller-druck.com for your permanent access token";
 
         static async Task Main(string[] args)
         {
@@ -21,13 +21,13 @@ namespace PermanentAccessTokenExample
             // With WebClient it would be   WebClient.Headers.Add("userOid", PermanentAccessToken);
 
             // Simple Example: Get a list of all devices the token gives access to
-            HttpResponseMessage response = await HttpClient.GetAsync("https://api.kolibricloud.ch/v1/Devices");
+            HttpResponseMessage response = await HttpClient.GetAsync("https://api.pressuresuite.com/v1/Devices");
             Console.WriteLine(await response.Content.ReadAsStringAsync().ConfigureAwait(false) + Environment.NewLine);
 
             // Now, lets get the measurement data of the last 48 hours from a certain device for a certain "measurementDefinitionId"
             DateTime now = DateTime.UtcNow;
             // Get the measurement data of measurementDefId 2 from the last 48 hours from device 1831
-            // eg.  https://api.kolibricloud.ch/v1/Measurements?measurementDefinitionId=2&deviceId=1831&start=2020-03-04T13%3A34%3A40.499Z&end=2020-03-04T13%3A34%3A40.499Z
+            // eg.  https://api.pressuresuite.com/v1/Measurements?measurementDefinitionId=2&deviceId=1831&start=2020-03-04T13%3A34%3A40.499Z&end=2020-03-04T13%3A34%3A40.499Z
             string requestUrl =  BaseUrl + $"/v1/Measurements?measurementDefinitionId={2}&deviceId={1831}&start={(now - TimeSpan.FromHours(48)):yyyy-MM-ddTHH:mm:sssZ}&end={now:yyyy-MM-ddTHH:mm:sssZ}";
             Task<string> request = GetResponseWithRequestUrlAsync(requestUrl);
             // It is also possible to not use UTC but get the timestamps in a certain timezone: GetResponseWithRequestUrlAsync(requestUrl+ "&ianaTimeZone=Europe/Stockholm");
